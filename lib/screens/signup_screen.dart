@@ -10,7 +10,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-
   LoginController loginController = Get.put(LoginController());
 
   @override
@@ -20,8 +19,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(children: [
-        Container(
+        child: Column(children: [
+          Container(
             alignment: Alignment.bottomCenter,
             height: height * .25,
             width: width,
@@ -45,46 +44,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         fontWeight: FontWeight.bold),
                   )),
             ),
-        ),
-        SizedBox(
+          ),
+          SizedBox(
             height: height * .05,
-        ),
-        Text(
+          ),
+          Text(
             "SIGN UP",
             style: TextStyle(
                 color: Colors.blue.shade800,
                 fontSize: 30,
                 fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
+          ),
+          SizedBox(
             height: height * .10,
-        ),
-              emailArea(),
-              SizedBox(
-                height: height * .02,
-              ),
-              passwordArea(),
-              SizedBox(
-                height: height * .02,
-              ),
-              confirmPasswordArea(),
-              SizedBox(
-                height: height * .10,
-              ),
-              SizedBox(
-                height: height*.06,
-                width: width*.6,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade900),
-                    onPressed: () {
-                      loginController.home();
-                    },
-                    child: const Text("SIGN UP",
-                      style: TextStyle(color: Colors.white, fontSize: 20),)),
-              ),
-      ]),
-          )
-      ),
+          ),
+          emailArea(),
+          SizedBox(
+            height: height * .02,
+          ),
+          passwordArea(),
+          SizedBox(
+            height: height * .02,
+          ),
+          confirmPasswordArea(),
+          SizedBox(
+            height: height * .10,
+          ),
+          SizedBox(
+            height: height * .06,
+            width: width * .6,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade900),
+                onPressed: () {
+                  loginController.home();
+                },
+                child: const Text(
+                  "SIGN UP",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                )),
+          ),
+        ]),
+      )),
     );
   }
 
