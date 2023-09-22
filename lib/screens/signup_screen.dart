@@ -1,4 +1,5 @@
 import 'package:authentication_project/controller/login_controller.dart';
+import 'package:authentication_project/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,8 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   LoginController loginController = Get.put(LoginController());
+  SignUpController signUpController = Get.put(SignUpController());
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,72 +22,79 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
-        child: Column(children: [
-          Container(
-            alignment: Alignment.bottomCenter,
-            height: height * .25,
-            width: width,
-            decoration: BoxDecoration(
-                color: Colors.blue.shade900,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(250),
-                  bottomRight: Radius.circular(250),
-                )),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 22.0),
-              child: TextButton(
+        child: Form(
+          key: _formKey,
+          child: Column(children: [
+            Container(
+              alignment: Alignment.bottomCenter,
+              height: height * .25,
+              width: width,
+              decoration: BoxDecoration(
+                  color: Colors.blue.shade900,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(250),
+                    bottomRight: Radius.circular(250),
+                  )),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 22.0),
+                child: TextButton(
+                    onPressed: () {
+                      loginController.login();
+                    },
+                    child: const Text(
+                      "LOG IN",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold),
+                    )),
+              ),
+            ),
+            SizedBox(
+              height: height * .05,
+            ),
+            Text(
+              "SIGN UP",
+              style: TextStyle(
+                  color: Colors.blue.shade800,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: height * .10,
+            ),
+            emailArea(),
+            SizedBox(
+              height: height * .02,
+            ),
+            passwordArea(),
+            SizedBox(
+              height: height * .02,
+            ),
+            confirmPasswordArea(),
+            SizedBox(
+              height: height * .10,
+            ),
+            SizedBox(
+              height: height * .06,
+              width: width * .6,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue.shade900),
                   onPressed: () {
-                    loginController.login();
+
+                    if(_formKey.currentState!.validate()){
+                      signUpController.auth();
+                      signUpController.home();
+                    }
                   },
                   child: const Text(
-                    "LOG IN",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold),
+                    "SIGN UP",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
                   )),
             ),
-          ),
-          SizedBox(
-            height: height * .05,
-          ),
-          Text(
-            "SIGN UP",
-            style: TextStyle(
-                color: Colors.blue.shade800,
-                fontSize: 30,
-                fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: height * .10,
-          ),
-          emailArea(),
-          SizedBox(
-            height: height * .02,
-          ),
-          passwordArea(),
-          SizedBox(
-            height: height * .02,
-          ),
-          confirmPasswordArea(),
-          SizedBox(
-            height: height * .10,
-          ),
-          SizedBox(
-            height: height * .06,
-            width: width * .6,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue.shade900),
-                onPressed: () {
-                  loginController.home();
-                },
-                child: const Text(
-                  "SIGN UP",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                )),
-          ),
-        ]),
+          ]),
+        ),
       )),
     );
   }
@@ -93,6 +103,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.0),
       child: TextFormField(
+        controller: signUpController.emailController,
+        validator: (value){
+          if(value==null || value.isEmpty){
+            return "Enter email first";
+          }else{
+            return null;
+          }
+        },
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             hintText: "Email",
@@ -116,6 +134,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.0),
       child: TextFormField(
+        controller: signUpController.passwordController,
+        validator: (value){
+          if(value==null || value.isEmpty){
+            return "Enter password first";
+          }else{
+            return null;
+          }
+        },
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             hintText: "Password",
@@ -139,6 +165,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.0),
       child: TextFormField(
+        controller: signUpController.confirmPasswordController,
+        validator: (value){
+          if(value==null || value.isEmpty){
+            return "Enter confirmPassword first";
+          }else{
+            return null;
+          }
+        },
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             hintText: "Confirm password",

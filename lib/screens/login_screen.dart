@@ -1,3 +1,4 @@
+import 'package:authentication_project/controller/login_controller.dart';
 import 'package:authentication_project/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
 
   SignUpController signUpController = Get.put(SignUpController());
+  LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   onPressed: () {
-                    signUpController.home();
+                    loginController.home();
                   },
                   child: Text("LOG IN",
                     style: TextStyle(color: Colors.blue.shade900, fontSize: 20),)),
