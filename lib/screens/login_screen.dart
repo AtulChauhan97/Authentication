@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   onPressed: () {
-                    loginController.home();
+                   loginController.loginAuth();
                   },
                   child: Text("LOG IN",
                     style: TextStyle(color: Colors.blue.shade900, fontSize: 20),)),
@@ -77,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.0),
       child: TextFormField(
+        controller: loginController.emailController,
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             hintText: "Email",
@@ -104,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.0),
       child: TextFormField(
+        controller: loginController.passwordController,
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             hintText: "Password",

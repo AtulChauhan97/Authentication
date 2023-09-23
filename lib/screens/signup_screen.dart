@@ -11,7 +11,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  LoginController loginController = Get.put(LoginController());
   SignUpController signUpController = Get.put(SignUpController());
   final _formKey = GlobalKey<FormState>();
 
@@ -39,7 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 padding: const EdgeInsets.only(bottom: 22.0),
                 child: TextButton(
                     onPressed: () {
-                      loginController.login();
+                      LoginController.login();
                     },
                     child: const Text(
                       "LOG IN",
@@ -103,6 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.0),
       child: TextFormField(
+        textInputAction: TextInputAction.next,
         controller: signUpController.emailController,
         validator: (value){
           if(value==null || value.isEmpty){
@@ -134,6 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.0),
       child: TextFormField(
+        textInputAction: TextInputAction.next,
         controller: signUpController.passwordController,
         validator: (value){
           if(value==null || value.isEmpty){
@@ -165,6 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21.0),
       child: TextFormField(
+        textInputAction: TextInputAction.done,
         controller: signUpController.confirmPasswordController,
         validator: (value){
           if(value==null || value.isEmpty){
