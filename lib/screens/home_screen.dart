@@ -61,43 +61,32 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget leadingStackProperty() {
-    return Stack(
-      alignment: Alignment.centerLeft,
-      clipBehavior: Clip.none,
-      fit: StackFit.loose,
-      children: [
-        InkWell(
-            onTap: () {
-              if (scaffoldKey.currentState!.isDrawerOpen) {
-                scaffoldKey.currentState!.closeDrawer();
-                //close drawer, if drawer is open
-              } else {
-                scaffoldKey.currentState!.openDrawer();
-                //open drawer, if drawer is closed
-              }
-            },
-            child: Obx(
-              () => CircleAvatar(
-                backgroundImage: imagePickController.imagePath.isNotEmpty
-                    ? FileImage(File(imagePickController.imagePath.toString()))
-                    : null,
+    return InkWell(
+        onTap: () {
+          if (scaffoldKey.currentState!.isDrawerOpen) {
+            scaffoldKey.currentState!.closeDrawer();
+            //close drawer, if drawer is open
+          } else {
+            scaffoldKey.currentState!.openDrawer();
+            //open drawer, if drawer is closed
+          }
+        },
+        child: Obx(() => Padding(
+          padding: const EdgeInsets.only(left: 8.0,top: 4,bottom: 4),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Container(
+              height: 10,
+              width: 10,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15)
               ),
-            )),
-        Positioned(
-          top: 30,
-          left: 25,
-          child: Container(
-            height: 10,
-            width: 10,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
-            child: const Icon(
-              Icons.menu,
-              color: Colors.black,
-              size: 16,
+              child: imagePickController.imagePath.isNotEmpty
+                  ? Image.file(File(imagePickController.imagePath.toString()),fit: BoxFit.cover,scale: .2,)
+                  : Icon(Icons.person,color: Colors.grey.shade800,size: 30,),
             ),
           ),
-        )
-      ],
+        ))
     );
   }
 
@@ -129,11 +118,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                ? Image.file(
                              File(imagePickController.imagePath.value
                                  .toString()),
-                             fit: BoxFit.fitHeight,
+                             fit: BoxFit.cover,
                            )
                                : Icon(
                              Icons.person,
                              color: Colors.grey.shade200,
+                             size: 70,
                            )),
                      )),
                  SizedBox(width: 20,),
@@ -155,3 +145,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+

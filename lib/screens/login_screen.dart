@@ -53,9 +53,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   onPressed: () {
                    loginController.loginAuth();
+                   loginController.isLogin.value = true;
+
                   },
-                  child: Text("LOG IN",
-                    style: TextStyle(color: Colors.blue.shade900, fontSize: 20),)),
+                  child: Obx(() => loginController.isLogin.value?const CircularProgressIndicator(
+                    backgroundColor: Colors.blue,
+                    color: Colors.white,
+                  ):Text("LOG IN",
+                    style: TextStyle(color: Colors.blue.shade900, fontSize: 20),))),
             ),
             ],
           ),
@@ -65,7 +70,9 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: height*.08,),
               TextButton(onPressed: (){
                 signUpController.signup();
-              }, child: Text("SIGN UP",style: TextStyle(color: Colors.blue.shade900,fontSize: 30,fontWeight: FontWeight.bold),))
+              }, child: Text("SIGN UP",style: TextStyle(color: Colors.blue.shade900,fontSize: 30,fontWeight: FontWeight.bold),)),
+
+              ElevatedButton(onPressed: (){}, child: Text("google"))
       ],
     ),
         ),)

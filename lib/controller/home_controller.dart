@@ -15,14 +15,14 @@ class HomeController extends GetxController {
             onPressed: () {
               Get.back();
             },
-            child: Text("No"),
+            child: const Text("No"),
           ),
           TextButton(
             onPressed: () {
               Auth.logOut();
               LoginController.login();
             },
-            child: Text("Yes"),
+            child: const Text("Yes"),
           ),
         ]);
   }

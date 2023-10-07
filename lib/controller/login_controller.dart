@@ -11,6 +11,8 @@ class LoginController extends GetxController{
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  RxBool isLogin = false.obs;
+
 static void login(){
   Get.off(const LoginScreen());
 }
@@ -23,6 +25,8 @@ static void home(){
  void loginAuth()async{
   String email = emailController.text.toString();
   String password = passwordController.text.toString();
+  emailController.clear();
+  passwordController.clear();
 
    User? user = await Auth.loginWithEmailAndPassword(email, password);
 
