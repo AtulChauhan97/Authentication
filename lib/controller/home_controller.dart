@@ -21,6 +21,7 @@ class HomeController extends GetxController {
             onPressed: () {
               Auth.logOut();
               LoginController.login();
+              Auth.signOutFromGoogle();
             },
             child: const Text("Yes"),
           ),

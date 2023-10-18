@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: imagePickController.imagePath.isNotEmpty
                   ? Image.file(File(imagePickController.imagePath.toString()),fit: BoxFit.cover,scale: .2,)
-                  : Icon(Icons.person,color: Colors.grey.shade800,size: 30,),
+                  : const Icon(Icons.person,color: Colors.white,size: 30,),
             ),
           ),
         ))
@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              size: 70,
                            )),
                      )),
-                 SizedBox(width: 20,),
+                 const SizedBox(width: 20,),
                  const Text(
                    "Name",
                    style: TextStyle(color: Colors.white,fontSize: 18),
